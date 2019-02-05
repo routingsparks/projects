@@ -1,9 +1,5 @@
-# Python Projects
+# Programming Projects
 
 ## Table of Contents
 
-
-## Task List
-- [ ] TODO:
-    - [ ] Merge all useful scripts from python-projects to this repository
-
+* [Python Projects](https://github.com/routingsparks/projects/tree/master/python)

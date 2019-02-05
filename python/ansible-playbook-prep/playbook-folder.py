@@ -11,8 +11,7 @@ main_folders = ['group_vars', 'host_vars', 'library', 'module_utils',
                 'filter_plugins', 'roles']
 role_folders = ['common', 'web-server', 'db-server']
 sub_folders = ['tasks', 'handlers', 'templates', 'files', 'vars', 'defaults',
-               'meta', 'library',
-               'module_utils', 'lookup_plugins']
+               'meta', 'library', 'module_utils', 'lookup_plugins']
 files = ['production', 'staging', 'site.yml', 'hosts']
 role_files = ['main.yml']
 

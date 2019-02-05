@@ -7,7 +7,7 @@
 - [ ] TODO:
     - [x] Merge all useful scripts from python-projects to this repository
     - [ ] Projects to create
-      - [ ] Dice Roller
+      - [x] Dice Roller
       - [ ] Stock Tracker
       - [ ] Calculator (GUI)
       - [ ] Microblog (Flask)
