@@ -1,6 +1,7 @@
 # Python Projects
 
-## Repository to store Python Projects
+## Table of Contents
+
 
 ## Task List
 - [ ] TODO:
