@@ -25,4 +25,3 @@ def modify_task():
     task1 = api.items.update(content='NewTask1', due={'string': 'tomorrow at 10:00'}, project_id=project1['id'], item_id=(3723463411))
     api.commit()
 
-
