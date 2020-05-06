@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 
 playbook_name = input('New playbook name: ')
