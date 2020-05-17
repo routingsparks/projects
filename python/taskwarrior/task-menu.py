@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+from pathlib import Path
 
 ############################################################
 # TODO
@@ -18,14 +19,17 @@ def main():
     choice = '0'
 
     print ()
-    print ("TaskWarrior Project Generator")
-    print()
+    print ("#########################################")
+    print ("##### TaskWarrior Project Generator #####")
+    print ("#########################################")
+    print ()
     print ("   1.) Create a home project")
     print ("   2.) Create a school project")
     print ("   3.) Create a technology project")
     print ("   4.) Create a research project")
     print ("   5.) Create a travel project")
     print ("   6.) Create a blog project")
+    print ()
     print ("   q.) Exit script")
 #    print ("   6.) Create home project")
     print ()
@@ -62,10 +66,12 @@ def home_project():
     print ()
     print ("   1.) Garage")
     print ("   2.) Lawncare")
-    print ("   3.) Home Repair")
-    print ("   4.) Home Maintenance")
-    print ("   5.) Project Category not listed")
-    print ("   q.) Quit to main menu")
+    print ("   3.) Home repair")
+    print ("   4.) Home maintenance")
+    print ("   5.) Project category not listed")
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
     print ()
     proj_category = input (f'Please enter the {proj_main} project category: ')
     if proj_category == "1":
@@ -78,18 +84,27 @@ def home_project():
         proj_category = "home_maintenance"
     elif proj_category == "5":
         proj_category = input (f'Please enter project category: ')
-    elif proj_category == "q":
+    elif proj_category == "e":
+        os.system('clear')
         main()
-    print()
+    elif proj_category == "q":
+        os.system('clear')
+        exit()
+    else:
+        home_project()
+
+    printi ()
     print (f'Select {proj_category} project recurrence')
-    print()
+    print ()
     print ("   1.) Initial research for recurring project")
     print ("   2.) Project is a recurring project")
     print ("   3.) Project is a one-time project")
-    print ("   q.) Quit to main")
-    print()
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
+    print ()
     proj_recur = input ("Please select project recurrence: ")
-    print()
+    print ()
     if proj_recur == "1":
         proj_topic = input (f'Please enter a name for the {proj_category} project (ex. storage, mowing, etc.): ')
         proj_periodicity = input (f'How often does {proj_category} occur (ex. daily, weekly, etc.): ')
@@ -112,8 +127,12 @@ def home_project():
         os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic} due:{proj_due}')
-    elif proj_recur == "q":
+    elif proj_recur == "e":
+        os.system('clear')
         main()
+    elif proj_recur == "q":
+        os.system('clear')
+        exit()
     else:
         print("Please select a valid option.")
         os.system('clear')
@@ -130,7 +149,9 @@ def school_project():
     print ("   1.) Class")
     print ("   2.) Administrative")
     print ("   3.) Other")
-    print ("   q.) Quit to main menu")
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
     print ()
     proj_category = input (f'Please enter the {proj_main} category: ')
     print ()
@@ -186,8 +207,12 @@ def school_project():
         proj_category = input (f'Please enter {proj_main} project category: ')
         print (f'This is a placeholder.')
         print ()
-    elif proj_category == "q":
+    elif proj_category == "e":
+        os.system('clear')
         main()
+    elif proj_category == "q":
+        os.system('clear')
+        exit()
     else:
         print (f'No template created for {proj_category}. Please create tasks manually.')
 
@@ -205,7 +230,9 @@ def tech_project():
     print ("   4.) Technology Research")
     print ("   5.) Certifications")
     print ("   6.) Other")
-    print ("   q.) Quit to main menu")
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
     print ()
     proj_category = input (f'Please enter the {proj_main} project category: ')
     if proj_category == "1":
@@ -226,6 +253,16 @@ def tech_project():
     elif proj_category == "4":
         proj_category = "tech_research"
         # ask for topic and creating directories
+        home = str(Path.home())
+        working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
+        Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+        subfolders = ['sources', 'draft-documents', 'misc']
+        subfiles = ['outline.md']
+        for subfolder in subfolders:
+            os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
+        #
         print (proj_category)
     elif proj_category == "5":
         proj_category = "certification"
@@ -234,8 +271,12 @@ def tech_project():
         proj_category = input ("Please enter a project topic name: ")
         print (f'There is no template for {proj_category}')
         print ()
-    elif proj_category == "q":
+    elif proj_category == "e":
+        os.system('clear')
         main()
+    elif proj_category == "q":
+        os.system('clear')
+        exit()
     else:
         print ("Please select a valid option")
         home_menu = input ("Go back to main menu? [Y/N]: ")
@@ -257,9 +298,12 @@ def research_project():
     print ("NOTE: If project topic has multiple words, use \"_\" instead of \"-\" to separate words")
     print ()
     print (f'{proj_main} project options')
+    print ()
     print (f'   1.) Create {proj_main} project with just tasks.')
     print (f'   2.) Create {proj_main} project with tasks and working directory')
-    print (f'   q.) Go back to main menu')
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
     print ()
     proj_category = input (f'Please select {proj_main} category: ')
     print ()
@@ -276,10 +320,22 @@ def research_project():
         os.system(f'task add determine desired outcome of {proj_topic} research +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add validate resources on {proj_topic} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add ensure {proj_topic} project has working directory created +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
-        # create options for creating a working directory
-    elif proj_category == "q":
+        # Below is the code that creates a directorys from the loop
+        home = str(Path.home())
+        working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
+        Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+        subfolders = ['sources', 'draft-documents', 'misc']
+        subfiles = ['outline.md']
+        for subfolder in subfolders:
+            os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
+    elif proj_category == "e":
         os.system ('clear')
         main()
+    elif proj_category == "q":
+        os.system('clear')
+        exit()
     else:
         os.system ('clear')
         print ("Please select a valid option")
@@ -295,7 +351,9 @@ def travel_project():
     print ()
     print ("   1.) CONUS")
     print ("   2.) OCONUS")
-    print ("   q.) Quit to main menu")
+    print ()
+    print ("   e.) Exit to main menu")
+    print ("   q.) Quit script")
     print ()
     travel_area = input (f'Please enter the {proj_main} project category: ')
     print ()
@@ -339,6 +397,15 @@ def travel_project():
             os.system(f'task add research driving to {travel_city} +{proj_main} +research pro:{proj_main}_{travel_area}.{travel_country}.{travel_city}')
         elif travel_flying == "n" and travel_driving == "n":
             os.system(f'task add research activities in {travel_city} +{proj_main} +research pro:{proj_main}_{travel_area}.{travel_country}.{travel_city}')
+    elif travel_area == "e":
+        os.system('clear')
+        main()
+    elif travel_area == "q":
+        os.system('clear')
+        exit()
+    else:
+        os.system('clear')
+        travel_project()
 
 def blog_project():
     proj_main = "blog"
@@ -347,6 +414,7 @@ def blog_project():
     proj_topic = input (f'What is the {proj_category} topic: ')
     blog_id = input (f'Which blog is this for: ')
     # check to make sure directory exists, otherwise create
+    """
     os.system(f'task add conduct research for {proj_topic} post +{proj_main} +research +{blog_id} pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add create outline for {proj_topic} post +{proj_main} +outline +{blog_id} pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add create working directory for {proj_topic} post +{proj_main} +{blog_id} +organization pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
@@ -354,6 +422,16 @@ def blog_project():
     os.system(f'task add write final draft of {proj_topic} post +{proj_main} +{blog_id} +draft pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add take screenshots for {proj_topic} post +{proj_main} +{blog_id} +screenshots pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add upload final {proj_topic} post +{proj_main} +{blog_id} +post pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
+    """
+    home = str(Path.home())
+    working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
+    Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+    subfolders = ['sources', 'draft-documents', 'misc']
+    subfiles = ['outline.md']
+    for subfolder in subfolders:
+        os.makedirs(os.path.join(f'{working_dir}', subfolder))
+        for subfile in subfiles:
+            os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
 
 
 main()
