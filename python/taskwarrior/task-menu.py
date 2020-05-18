@@ -19,9 +19,9 @@ def main():
     choice = '0'
 
     print ()
-    print ("#########################################")
-    print ("##### TaskWarrior Project Generator #####")
-    print ("#########################################")
+    print ("###################################################")
+    print ("#####      TaskWarrior Project Generator      #####")
+    print ("###################################################")
     print ()
     print ("   1.) Create a home project")
     print ("   2.) Create a school project")
@@ -31,7 +31,6 @@ def main():
     print ("   6.) Create a blog project")
     print ()
     print ("   q.) Exit script")
-#    print ("   6.) Create home project")
     print ()
 
     choice = input ("Please select a choice: ")
@@ -53,6 +52,7 @@ def main():
         exit()
     else:
         print ("Please select a valid choice")
+        os.system('clear')
         main()
 
 def home_project():
@@ -92,13 +92,13 @@ def home_project():
         exit()
     else:
         home_project()
-
-    printi ()
-    print (f'Select {proj_category} project recurrence')
+    os.system('clear')
     print ()
-    print ("   1.) Initial research for recurring project")
-    print ("   2.) Project is a recurring project")
-    print ("   3.) Project is a one-time project")
+    print (f'Select {proj_category} project details: ')
+    print ()
+    print ("   1.) Initial research for project")
+    print (f"   2.) This {proj_category} project is recurring")
+    print (f"   3.) This {proj_category} project is a one-time project")
     print ()
     print ("   e.) Exit to main menu")
     print ("   q.) Quit script")
@@ -107,26 +107,98 @@ def home_project():
     print ()
     if proj_recur == "1":
         proj_topic = input (f'Please enter a name for the {proj_category} project (ex. storage, mowing, etc.): ')
-        proj_periodicity = input (f'How often does {proj_category} occur (ex. daily, weekly, etc.): ')
-        proj_day = input (f'What day will {proj_topic} be completed: ')
-        proj_due = input (f'When does this project begin: ')
-        proj_end = input (f'When does {proj_category} end (ex. add actual date or month): ')
+        create_dir = input (f"Create working directory for {proj_topic} research [Y/N]: ")
+        if create_dir == "y":
+            # Below is the code that creates a directorys from the loop
+            home = str(Path.home())
+            working_dir = f"{home}/documents/house/projects/{proj_category}/{proj_topic}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['01-archive', '02-misc', '03-quotes']
+            subfiles = ['outline.md', 'bill-of-materials.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfile))
+            print ()
+            print ("Directories created successfully")
+            print ()
+        elif create_dir == "n":
+            print ()
+            print ("Not creating working directories, just tasks")
+            print ()
+        else:
+            print ("Please select a valid option")
+            home_project()
         os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
-        os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
-        os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic} recur:{proj_periodicity} due:{proj_due} until:{proj_end}')
     elif proj_recur == "2":
         proj_topic = input (f'Please enter a name for the {proj_category} project (ex. storage, mowing, etc.): ')
         proj_periodicity = input (f'How often does {proj_category} occur (ex. daily, weekly, etc.): ')
         proj_day = input (f'What day will {proj_topic} be completed: ')
         proj_due = input (f'When does this project begin: ')
         proj_end = input (f'When does {proj_category} end (ex. add actual date or month): ')
+        create_dir = input (f"Create working directory for {proj_topic} research [Y/N]: ")
+        if create_dir == "y":
+            # Below is the code that creates a directorys from the loop
+            home = str(Path.home())
+            working_dir = f"{home}/documents/house/projects/{proj_category}/{proj_topic}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['01-archive', '02-misc', '03-quotes']
+            subfiles = ['outline.md', 'bill-of-materials.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfile))
+            print ()
+            print ("Directories created successfully")
+            print ()
+        elif create_dir == "n":
+            print ()
+            print ("Not creating working directories, just tasks")
+            print ()
+        else:
+            print ("Please select a valid option")
+            home_project()
+        os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
+        os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic} recur:{proj_periodicity} due:{proj_due} until:{proj_end}')
     elif proj_recur == "3":
         proj_topic = input (f'Please enter a name for the {proj_category} project (ex. storage, mowing, etc.): ')
-        proj_due = input (f'When is this project due (ex. day of week (monday, sunday) or date (YYYY-MM-DD)): ')
+        due_date = input (f'Does this {proj_category} have a due date [Y/N]: ')
+        create_dir = input (f"Create working directory for {proj_topic} research [Y/N]: ")
+        if create_dir == "y":
+            # Below is the code that creates a directorys from the loop
+            home = str(Path.home())
+            working_dir = f"{home}/documents/house/projects/{proj_category}/{proj_topic}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['01-archive', '02-misc', '03-quotes']
+            subfiles = ['outline.md', 'bill-of-materials.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfile))
+            print ()
+            print ("Directories created successfully")
+            print ()
+        elif create_dir == "n":
+            print ()
+            print ("Not creating working directories, just tasks")
+            print ()
+        else:
+            print ("Please select a valid option")
+            home_project()
         os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
-        os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
-        os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic} due:{proj_due}')
+        if due_date == "y":
+            proj_due = input (f'When is this project due (ex. day of week (monday, sunday) or date (YYYY-MM-DD): ')
+            os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
+            os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
+            os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic} due:{proj_due}')
+        elif due_date == "n":
+            os.system(f'task add conduct research for {proj_topic} +{proj_category} +research pro:{proj_main}.{proj_category}.{proj_topic}')
+            os.system(f'task add create parts list and get costs to complete {proj_topic} project  +{proj_category} +materials pro:{proj_main}.{proj_category}.{proj_topic}')
+            os.system(f'task add complete {proj_topic} project +{proj_category} proj:{proj_main}.{proj_category}.{proj_topic}')
+        else:
+            print ("Please select a valid option")
+            home_project()
     elif proj_recur == "e":
         os.system('clear')
         main()
@@ -160,6 +232,7 @@ def school_project():
         proj_topic = input (f'Please enter the {proj_category} name: ')
         date_start = input ("Enter the class start date (YYYY-MM-DD): ")
         date_end = input ("Enter the class finish date (YYYY-MM-DD): ")
+        class_session = input (f'What is the {proj_category} semester and session (ex. f2020, s2021, etc.): ')
         init_discussion = input ("Enter day initial discussion post is due (ex. monday, tuesday, etc.): ")
         if init_discussion == 'monday':
             init_discussion = "0d"
@@ -194,6 +267,34 @@ def school_project():
             resp_discussion = "6d"
         else:
             print ("Please select a valid option")
+            school_project()
+        class_dir = input (f'Create a working directory for {proj_topic} [Y/N]: ')
+        if class_dir == "y":
+            home = str(Path.home())
+            working_dir = f"{home}/documents/{proj_main}/classes/{class_session}-{proj_topic}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['01-syllabus', '03-notes', '04-resources', '05-assignments', '06-quizes']
+            weekly_dir = ['02-discussions']
+            weekly_sub = ['week-01', 'week-02', 'week-03', 'week-04', 'week-05', 'week-06', 'week-07', 'week-08']
+            discussions = ['post-01-initial.md', 'post-02-initial.md', 'post-01-response.md', 'post-02-response.md']
+            subfiles = ['outline.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+                for subfile in subfiles:
+                    os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
+            for w in weekly_dir:
+                os.makedirs(os.path.join(f'{working_dir}', w))
+                for x in weekly_sub:
+                    os.makedirs(os.path.join(f'{working_dir}', w, x))
+                    for y in discussions:
+                        os.mknod(os.path.join(f'{working_dir}', w, x, y))
+        elif class_dir == "n":
+            print ()
+            print ("Okay, just making tasks")
+            print ()
+        else:
+            print ("Please select a valid option")
+            school_project()
         #init_discussion_number = input ("Enter number of initial discussion posts that are required for this class: ")
         #resp_discussion_number = input ("Enter number of response disuession posts that are required for this class: ")
         os.system(f'task add print syllabus for {proj_topic} +{proj_topic} +syllabus pro:{proj_main}.{proj_category}.{proj_topic}')
@@ -204,8 +305,8 @@ def school_project():
         proj_category = "admin"
         print (f'{proj_category} was selected')
     elif proj_category == "3":
-        proj_category = input (f'Please enter {proj_main} project category: ')
-        print (f'This is a placeholder.')
+        print ()
+        print ("No templates for this option. Please create tasks manually.")
         print ()
     elif proj_category == "e":
         os.system('clear')
@@ -245,24 +346,28 @@ def tech_project():
         proj_category = "home_automation"
         proj_topic = input (f'Please enter the {proj_category} project name: ')
         os.system(f'task add conduct initial research for {proj_topic} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
-        #os.system(f'task add determine requirements for {proj_topic} {proj_category} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
-        #os.system(f'task add determine desired outcome for {proj_topic} {proj_category} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
+        os.system(f'task add determine requirements for {proj_topic} {proj_category} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
+        os.system(f'task add determine desired outcome for {proj_topic} {proj_category} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
     elif proj_category == "3":
         proj_category = "ham_radio"
         print (proj_category)
     elif proj_category == "4":
-        proj_category = "tech_research"
-        # ask for topic and creating directories
-        home = str(Path.home())
-        working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
-        Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
-        subfolders = ['sources', 'draft-documents', 'misc']
-        subfiles = ['outline.md']
-        for subfolder in subfolders:
-            os.makedirs(os.path.join(f'{working_dir}', subfolder))
-            for subfile in subfiles:
-                os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
-        #
+        proj_category = "research"
+        proj_topic = input (f'Please enter {proj_main} topic to research: ')
+        create_dir = input (f'Create directoriy for {proj_topic} research [Y/N]: ')
+        if create_dir == "y":
+            home = str(Path.home())
+            working_dir = f"{home}/documents/{proj_main}/{proj_category}/{proj_topic}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['sources', 'draft-documents', 'misc']
+            subfiles = ['outline.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+                for subfile in subfiles:
+                    os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
+        ##
+        ## Add task add commands to add tasks once directories have been created
+        ##
         print (proj_category)
     elif proj_category == "5":
         proj_category = "certification"
@@ -321,6 +426,7 @@ def research_project():
         os.system(f'task add validate resources on {proj_topic} +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
         os.system(f'task add ensure {proj_topic} project has working directory created +{proj_category} +{proj_topic} pro:{proj_main}.{proj_category}.{proj_topic}')
         # Below is the code that creates a directorys from the loop
+        create_dir = input (f'Create directoriy for {proj_topic} research [Y/N]: ')
         home = str(Path.home())
         working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
         Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
@@ -364,6 +470,20 @@ def travel_project():
         travel_city = input ("What is the destination city (if multiple, enter \"multiple\"): ")
         travel_flying = input ("Does trip require flying [Y/N]: ")
         travel_driving = input ("Does trip require driving [Y/N]: ")
+        create_dir = input (f'Create directoriy for {travel_area} {proj_main} [Y/N]: ')
+        if create_dir == "y":
+            home = str(Path.home())
+            working_dir = f"{home}/documents/{proj_main}/trip-planning/{travel_area}/{travel_state}-{travel_city}"
+            Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+            subfolders = ['01-archive']
+            subfiles = ['outline.md', 'flying-info.md', 'driving-info.md', 'attractions.md', 'accomadations.md', 'checklist.md']
+            for subfolder in subfolders:
+                os.makedirs(os.path.join(f'{working_dir}', subfolder))
+            for subfile in subfiles:
+                os.mknod(os.path.join(f'{working_dir}', subfile))
+        print ()
+        print ("Directories created successfully")
+        print ()
         if travel_flying == "y" and travel_driving == "y":
             os.system(f'task add research activities in {travel_city} +{proj_main} +research pro:{proj_main}_{travel_area}.{travel_state}.{travel_city}')
             os.system(f'task add research flying to {travel_city} +{proj_main} +research pro:{proj_main}_{travel_area}.{travel_state}.{travel_city}')
@@ -410,11 +530,76 @@ def travel_project():
 def blog_project():
     proj_main = "blog"
     os.system ('clear')
+    print ()
+    print (f'Select a {proj_main} category')
+    print ()
+    print (f'   1.) Cyber Security')
+    print (f'   2.) DevOps/DevSecOps')
+    print (f'   3.) Automation')
+    print (f'   4.) Project Management')
+    print (f'   5.) System Engineering')
+    print ()
+    print (f'   e.) Exit to main menu')
+    print (f'   q.) Quit script')
+    print ()
     proj_category = input (f'What is the {proj_main} category: ')
-    proj_topic = input (f'What is the {proj_category} topic: ')
-    blog_id = input (f'Which blog is this for: ')
-    # check to make sure directory exists, otherwise create
-    """
+    print ()
+    if proj_category == "1":
+        proj_category = "cyber_security"
+        print ()
+        proj_topic = input (f'What is the {proj_category} topic: ')
+        print ()
+    elif proj_category == "2":
+        proj_category = "devops"
+        print ()
+        proj_topic = input (f'What is the {proj_category} topic: ')
+        print ()
+    elif proj_category == "3":
+        proj_category = "automation"
+        print ()
+        proj_topic = input (f'What is the {proj_category} topic: ')
+        print ()
+    elif proj_category == "4":
+        proj_category = "project_management"
+        print ()
+        proj_topic = input (f'What is the {proj_category} topic: ')
+        print ()
+    elif proj_category == "5":
+        proj_category = "syseng"
+        print ()
+        proj_topic = input (f'What is the {proj_category} topic: ')
+        print ()
+    elif proj_category == "e":
+        os.system('clear')
+        main()
+    elif proj_category == "q":
+        os.system('clear')
+        exit()
+    else:
+        print ("Please select a valid option.")
+        blog_project()
+
+    create_dir = input (f'Create working directory for {proj_category} [Y/N]: ')
+    if create_dir == "y":
+        home = str(Path.home())
+        working_dir = f"{home}/documents/{proj_main}/{proj_category}/0XX-{proj_topic}"
+        Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
+        subfolders = ['03-screenshots', '02-misc', '01-archive']
+        subfiles = ['outline.md', 'first-draft.md', 'final-draft.md', 'final-post-checklist.md']
+        for subfolder in subfolders:
+            os.makedirs(os.path.join(f'{working_dir}', subfolder))
+        for subfile in subfiles:
+            os.mknod(os.path.join(f'{working_dir}', subfile))
+    elif create_dir == "n":
+        print ()
+        print ("Not creating directories, just tasks.")
+        print ()
+    else:
+        print ("Please select a valid option")
+        blog_topic()
+    print ()
+    print ("Creating directories")
+    print ()
     os.system(f'task add conduct research for {proj_topic} post +{proj_main} +research +{blog_id} pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add create outline for {proj_topic} post +{proj_main} +outline +{blog_id} pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add create working directory for {proj_topic} post +{proj_main} +{blog_id} +organization pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
@@ -422,16 +607,5 @@ def blog_project():
     os.system(f'task add write final draft of {proj_topic} post +{proj_main} +{blog_id} +draft pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add take screenshots for {proj_topic} post +{proj_main} +{blog_id} +screenshots pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
     os.system(f'task add upload final {proj_topic} post +{proj_main} +{blog_id} +post pro:{proj_main}_{blog_id}.{proj_category}.{proj_category}')
-    """
-    home = str(Path.home())
-    working_dir = f"{home}/documents/{proj_main}/{proj_category}-{proj_topic}"
-    Path(f"{working_dir}").mkdir(parents=True, exist_ok=True)
-    subfolders = ['sources', 'draft-documents', 'misc']
-    subfiles = ['outline.md']
-    for subfolder in subfolders:
-        os.makedirs(os.path.join(f'{working_dir}', subfolder))
-        for subfile in subfiles:
-            os.mknod(os.path.join(f'{working_dir}', subfolder, subfile))
-
 
 main()
