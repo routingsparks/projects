@@ -276,7 +276,7 @@ def school_project():
             subfolders = ['01-syllabus', '03-notes', '04-resources', '05-assignments', '06-quizes']
             weekly_dir = ['02-discussions']
             weekly_sub = ['week-01', 'week-02', 'week-03', 'week-04', 'week-05', 'week-06', 'week-07', 'week-08']
-            discussions = ['post-01-initial.md', 'post-02-initial.md', 'post-01-response.md', 'post-02-response.md']
+            discussions = ['post-01-initial.docx', 'post-02-initial.docx', 'post-01-response.docx', 'post-02-response.docx']
             subfiles = ['outline.md']
             for subfolder in subfolders:
                 os.makedirs(os.path.join(f'{working_dir}', subfolder))
